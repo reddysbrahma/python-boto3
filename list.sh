@@ -1,0 +1,1 @@
+aws ec2 describe-instances --output text --query "Reservations[*].Instances[*].[InstanceId, InstanceType, ImageId, State.Name, LaunchTime, Placement.AvailabilityZone, Placement.Tenancy, PrivateIpAddress, PrivateDnsName, PublicDnsName]" > AllEC2Instances-1.csv
