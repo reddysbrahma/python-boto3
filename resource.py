@@ -1,4 +1,6 @@
 import boto3
+import xlwt
+import csv
 def get_ec2_list():
    # type: () -> object
    session = boto3.Session()
@@ -6,11 +8,13 @@ def get_ec2_list():
    for i in ec2_re.instances.all():
        print(i.public_dns_name, i.id, i.state["Name"], i.image_id)
    return
-
+instance_list = get_ec2_list()
 #session = boto3.Session()
 #ec2_re = session.resource(service_name="ec2")
-
-instance_list=get_ec2_list()
+wb  = xlwt.Workbook()
+ws  = wb.add_sheet("Test Sheet")
+ws.write(0,0,return get_ec2_list())
+wb.save("output.xls")
 
 
 
